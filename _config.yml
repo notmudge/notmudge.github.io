@@ -1,6 +1,6 @@
 title: 'notmudge.github.io'
 description: "Ooga Booga"
-baseurl: "jekyll-theme-console-demo-hacker"
+baseurl: "/"
 url: "https://notmudge.github.io"
 
 header_pages:
