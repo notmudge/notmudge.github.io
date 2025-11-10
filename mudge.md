@@ -1,7 +1,7 @@
 ---
-title: /peter
+title: /mudge
 layout: page
-permalink: /peter
+permalink: /mudge
 ---
 
 # Peter principle
