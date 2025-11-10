@@ -24,15 +24,13 @@ permalink: /contact
   @media(min-width:540px){ .linktree { flex-direction:row; flex-wrap:wrap; justify-content:center; } .linktree a { min-width:160px; } }
 </style>
 
-<p>Use the links below to reach me or follow my work. Replace each href with your own URL or email.</p>
+<p>Use the links below to reach me or follow my work.</p>
 
 <div class="linktree">
   <a href="mailto:you@example.com">Email</a>
   <a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
-  <a href="https://twitter.com/your-handle" target="_blank" rel="noopener">Twitter</a>
-  <a href="https://mastodon.social/@your-handle" target="_blank" rel="noopener">Mastodon</a>
   <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
-  <a href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
+  <a href="/resume.pdf" target="_blank" rel="noopener">CV</a>
 </div>
 
 </div>
