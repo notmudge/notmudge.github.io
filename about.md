@@ -8,6 +8,3 @@ permalink: /about/
 
 blah blah blah 
 
-## Placeholder
-
-blah blah blah 
