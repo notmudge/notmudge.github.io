@@ -4,13 +4,35 @@ layout: page
 permalink: /contact
 ---
 
-# Get in touch?
+# Get in touch
 
-<form>
-  <input type="text" id="name" name="name" placeholder="name:" autocomplete="off">
-  <input type="text" id="email" name="email" placeholder="email:" autocomplete="off">
-  <textarea rows="5" id="message" name="message" placeholder="message:" autocomplete="off"></textarea>
-  <input type="submit" value="[ submit ]">
-</form>
+<div style="max-width:640px;margin:0 auto;text-align:center;">
 
-<br /><br />(This is a demo site, the form doesn't work - If you want to implement a form on your site, you need an external service)
+<style>
+  .linktree { display:flex; flex-direction:column; gap:12px; margin:24px 0; }
+  .linktree a {
+    display:inline-block;
+    padding:14px 18px;
+    text-decoration:none;
+    color:#111;
+    background:#f3f3f3;
+    border-radius:8px;
+    font-weight:600;
+    border:1px solid rgba(0,0,0,0.06);
+  }
+  .linktree a:hover { background:#e9e9e9; }
+  @media(min-width:540px){ .linktree { flex-direction:row; flex-wrap:wrap; justify-content:center; } .linktree a { min-width:160px; } }
+</style>
+
+<p>Use the links below to reach me or follow my work. Replace each href with your own URL or email.</p>
+
+<div class="linktree">
+  <a href="mailto:you@example.com">Email</a>
+  <a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+  <a href="https://twitter.com/your-handle" target="_blank" rel="noopener">Twitter</a>
+  <a href="https://mastodon.social/@your-handle" target="_blank" rel="noopener">Mastodon</a>
+  <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
+  <a href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
+</div>
+
+</div>
