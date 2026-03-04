@@ -341,6 +341,40 @@
     .proj-card:hover .schema-edge { animation: dash 2s linear infinite; }
     @keyframes dash { to { stroke-dashoffset: -20; } }
 
+    /* ─── SMALL PROJECT CARDS GRID ────────────────── */
+    .proj-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem; margin-top: 1.5rem;
+    }
+    .proj-small {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 4px; padding: 1.75rem;
+      transition: border-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .proj-small:hover {
+      border-color: rgba(0,229,255,0.28); transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,229,255,0.06);
+    }
+    .proj-small-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .proj-small-icon { font-size: 1.5rem; line-height: 1; }
+    .proj-small-title {
+      font-family: var(--serif); font-size: 1.15rem;
+      color: var(--text); line-height: 1.2; flex: 1;
+    }
+    .proj-small-desc {
+      font-size: 0.85rem; color: var(--text-dim); line-height: 1.75;
+    }
+    .proj-small-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: auto; padding-top: 0.5rem; }
+    .proj-small-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--mono); font-size: 0.72rem;
+      color: var(--cyan); text-decoration: none;
+      border-top: 1px solid var(--border); padding-top: 0.9rem; margin-top: 0.25rem;
+      transition: gap 0.2s;
+    }
+    .proj-small-link:hover { gap: 0.65rem; }
+
     /* ─── CONTACT ─────────────────────────────────── */
     #contact-wrap {
       border-top: 1px solid var(--border);
@@ -599,6 +633,65 @@
           </svg>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ── MORE PROJECTS GRID ── -->
+  <div class="section-wrap" style="padding-top:0;">
+    <div class="proj-grid">
+
+      <div class="proj-small">
+        <div class="proj-small-header">
+          <span class="proj-small-icon">🐍</span>
+          <h4 class="proj-small-title">Sales Data Pipeline</h4>
+        </div>
+        <p class="proj-small-desc">Python ETL pipeline — generates synthetic retail sales data, runs extract → transform → load, and outputs a full Star Schema into SQLite. Clean separation of concerns, structured logging, surrogate keys.</p>
+        <div class="proj-small-stack">
+          <span class="s-tag">Python</span>
+          <span class="s-tag">pandas</span>
+          <span class="s-tag">SQLite</span>
+          <span class="s-tag">ETL</span>
+          <span class="s-tag">Star Schema</span>
+        </div>
+        <a href="https://github.com/notmudge/sales-data-pipeline" target="_blank" rel="noopener" class="proj-small-link">
+          View on GitHub <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="proj-small">
+        <div class="proj-small-header">
+          <span class="proj-small-icon">🗄️</span>
+          <h4 class="proj-small-title">Retail Data Warehouse</h4>
+        </div>
+        <p class="proj-small-desc">Complete SQL data warehouse schema for e-commerce analytics — DDL, seed data, SCD Type 2 customers, UK fiscal calendar, and 7 analytical queries including window functions and QoQ growth.</p>
+        <div class="proj-small-stack">
+          <span class="s-tag">SQL</span>
+          <span class="s-tag">SQLite</span>
+          <span class="s-tag">Star Schema</span>
+          <span class="s-tag">SCD Type 2</span>
+        </div>
+        <a href="https://github.com/notmudge/retail-data-warehouse" target="_blank" rel="noopener" class="proj-small-link">
+          View on GitHub <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="proj-small">
+        <div class="proj-small-header">
+          <span class="proj-small-icon">📐</span>
+          <h4 class="proj-small-title">DAX Measures Library</h4>
+        </div>
+        <p class="proj-small-desc">Reference library of production DAX measures — YTD/MTD/QTD, YoY comparisons, rolling averages, dynamic Top N via slicer, Pareto 80/20 analysis, and traffic-light KPI helpers.</p>
+        <div class="proj-small-stack">
+          <span class="s-tag">Power BI</span>
+          <span class="s-tag">DAX</span>
+          <span class="s-tag">Time Intelligence</span>
+          <span class="s-tag">KPIs</span>
+        </div>
+        <a href="https://github.com/notmudge/dax-measures-library" target="_blank" rel="noopener" class="proj-small-link">
+          View on GitHub <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
     </div>
   </div>
 
