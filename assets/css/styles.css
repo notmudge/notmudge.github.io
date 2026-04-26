@@ -27,7 +27,7 @@ html, body {
   padding:0;
   background:var(--bg);
   color:var(--text);
-  font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Ubuntu, system-ui, Segoe UI, Roboto, Arial, sans-serif;
 }
 
 a { color: var(--accent); text-decoration: none; }

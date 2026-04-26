@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Mudge Portfolio Reel Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <style>
+    :root {
+      --bg: #080b10;
+      --surface: #0d1117;
+      --surface-2: #131a24;
+      --ink: #e2e8f0;
+      --muted: #94a3b8;
+      --soft: #64748b;
+      --blue: #00e5ff;
+      --blue-soft: rgba(0, 229, 255, 0.10);
+      --violet: #a78bfa;
+      --violet-soft: rgba(167, 139, 250, 0.12);
+      --amber: #f59e0b;
+      --amber-soft: rgba(245, 158, 11, 0.12);
+      --deep: #0b1220;
+      --mono: "Ubuntu Mono", monospace;
+      --serif: "Ubuntu", sans-serif;
+      --sans: "Ubuntu", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: #080b10;
+      color: var(--ink);
+      font-family: var(--sans);
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 28px;
+    }
+
+    .preview-shell {
+      width: min(100%, 1280px);
+      display: grid;
+      gap: 14px;
+    }
+
+    .stage-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #0b1220;
+      box-shadow: 0 28px 80px rgba(15, 23, 42, 0.28);
+      overflow: hidden;
+    }
+
+    [data-composition-id="portfolio-reel"] {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(0, 229, 255, 0.16), transparent 30%),
+        radial-gradient(circle at 85% 18%, rgba(167, 139, 250, 0.16), transparent 26%),
+        radial-gradient(circle at 50% 88%, rgba(245, 158, 11, 0.08), transparent 28%),
+        linear-gradient(180deg, #080b10 0%, #0d1117 100%);
+      transform-origin: top left;
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.72;
+      background-image:
+        linear-gradient(rgba(0, 229, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.06) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(circle at center, black 0%, black 58%, transparent 92%);
+    }
+
+    .scanline {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      left: 0;
+      background: linear-gradient(180deg, transparent, var(--blue), transparent);
+      opacity: 0.38;
+    }
+
+    .scene {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 110px 140px;
+      opacity: 0;
+    }
+
+    .scene-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 34px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 22px;
+      border: 1px solid rgba(0, 229, 255, 0.28);
+      background: rgba(0, 229, 255, 0.04);
+      color: var(--blue);
+      font-family: var(--mono);
+      font-size: 22px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 0 8px rgba(0, 229, 255, 0.10);
+    }
+
+    .hero-name {
+      margin: 0;
+      max-width: 1180px;
+      font-family: var(--serif);
+      font-size: 168px;
+      line-height: 0.92;
+      letter-spacing: 0;
+      color: var(--ink);
+    }
+
+    .hero-name em {
+      color: var(--blue);
+      font-style: italic;
+    }
+
+    .hero-line {
+      margin: 0;
+      max-width: 1060px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 32px;
+      line-height: 1.5;
+    }
+
+    .meta-row,
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .meta-chip,
+    .skill-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 54px;
+      padding: 0 22px;
+      border: 1px solid rgba(0, 229, 255, 0.12);
+      background: rgba(13, 17, 23, 0.82);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 21px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.22);
+    }
+
+    .skill-chip.blue {
+      border-color: rgba(0, 229, 255, 0.24);
+      color: var(--blue);
+      background: var(--blue-soft);
+    }
+
+    .skill-chip.violet {
+      border-color: rgba(167, 139, 250, 0.24);
+      color: var(--violet);
+      background: var(--violet-soft);
+    }
+
+    .skill-chip.amber {
+      border-color: rgba(245, 158, 11, 0.24);
+      color: var(--amber);
+      background: var(--amber-soft);
+    }
+
+    .node-field {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .node {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 0 10px rgba(0, 229, 255, 0.08);
+    }
+
+    .node.n1 { left: 240px; top: 205px; }
+    .node.n2 { right: 380px; top: 220px; background: var(--violet); }
+    .node.n3 { left: 410px; bottom: 250px; background: var(--amber); }
+    .node.n4 { right: 300px; bottom: 235px; }
+
+    .connector {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.58), transparent);
+      transform-origin: left center;
+    }
+
+    .scene-title {
+      margin: 0;
+      max-width: 1050px;
+      font-family: var(--serif);
+      font-size: 104px;
+      line-height: 1.02;
+      letter-spacing: 0;
+      color: var(--ink);
+    }
+
+    .scene-title em {
+      color: var(--blue);
+      font-style: italic;
+    }
+
+    .scene-copy {
+      max-width: 900px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 34px;
+      line-height: 1.38;
+      font-weight: 500;
+    }
+
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      width: 100%;
+    }
+
+    .pillar {
+      min-height: 300px;
+      padding: 34px;
+      border: 1px solid rgba(0, 229, 255, 0.12);
+      background: rgba(13, 17, 23, 0.84);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.24);
+    }
+
+    .pillar-label {
+      color: var(--blue);
+      font-family: var(--mono);
+      font-size: 20px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .pillar h3 {
+      margin: 44px 0 20px;
+      color: var(--ink);
+      font-size: 48px;
+      line-height: 1.1;
+    }
+
+    .pillar p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 25px;
+      line-height: 1.42;
+    }
+
+    .flow-strip {
+      position: relative;
+      height: 130px;
+      margin-top: 10px;
+      border: 1px solid rgba(0, 229, 255, 0.14);
+      background: rgba(13, 17, 23, 0.72);
+      overflow: hidden;
+    }
+
+    .flow-line {
+      position: absolute;
+      left: 95px;
+      right: 95px;
+      top: 64px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--violet), var(--amber));
+      transform-origin: left center;
+    }
+
+    .flow-point {
+      position: absolute;
+      top: 45px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 4px solid white;
+      background: var(--blue);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.15);
+    }
+
+    .flow-point:nth-child(2) { left: 92px; }
+    .flow-point:nth-child(3) { left: 48%; background: var(--violet); }
+    .flow-point:nth-child(4) { right: 92px; background: var(--amber); }
+
+    .project-focus {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 56px;
+      align-items: center;
+      height: 100%;
+    }
+
+    .dark-panel {
+      padding: 46px;
+      border: 1px solid rgba(0, 229, 255, 0.24);
+      background:
+        radial-gradient(circle at 14% 18%, rgba(0, 229, 255, 0.18), transparent 32%),
+        linear-gradient(135deg, #0b1220, #131a24);
+      color: white;
+      box-shadow: 0 28px 90px rgba(15, 23, 42, 0.25);
+    }
+
+    .project-badge {
+      display: inline-flex;
+      padding: 12px 18px;
+      color: #93c5fd;
+      background: rgba(37, 99, 235, 0.16);
+      border: 1px solid rgba(147, 197, 253, 0.3);
+      font-family: var(--mono);
+      font-size: 18px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .project-heading {
+      margin: 38px 0 22px;
+      color: #ffffff;
+      font-family: var(--serif);
+      font-size: 82px;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .project-text {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 27px;
+      line-height: 1.42;
+    }
+
+    .pipeline {
+      display: grid;
+      gap: 24px;
+    }
+
+    .pipe-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 18px;
+    }
+
+    .pipe-card {
+      min-height: 178px;
+      padding: 26px;
+      border: 1px solid rgba(0, 229, 255, 0.12);
+      background: rgba(13, 17, 23, 0.86);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    .pipe-card strong {
+      display: block;
+      color: var(--ink);
+      font-size: 29px;
+      margin-bottom: 15px;
+    }
+
+    .pipe-card span {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .pipe-card.blue { border-color: rgba(0, 229, 255, 0.34); }
+    .pipe-card.violet { border-color: rgba(167, 139, 250, 0.34); }
+    .pipe-card.amber { border-color: rgba(245, 158, 11, 0.34); }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .work-card {
+      min-height: 410px;
+      padding: 34px;
+      background: rgba(13, 17, 23, 0.86);
+      border: 1px solid rgba(0, 229, 255, 0.12);
+      box-shadow: 0 24px 72px rgba(0, 0, 0, 0.24);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .work-card h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 46px;
+      line-height: 1.08;
+    }
+
+    .work-card p {
+      margin: 24px 0;
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.42;
+    }
+
+    .proof {
+      width: fit-content;
+      padding: 10px 15px;
+      color: var(--blue);
+      border: 1px solid rgba(0, 229, 255, 0.24);
+      background: var(--blue-soft);
+      font-family: var(--mono);
+      font-size: 18px;
+    }
+
+    .final-card {
+      margin: auto;
+      width: min(100%, 1230px);
+      padding: 72px 80px;
+      border: 1px solid rgba(0, 229, 255, 0.16);
+      background: rgba(13, 17, 23, 0.9);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.28);
+      text-align: center;
+    }
+
+    .final-card h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 128px;
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .final-card h2 em {
+      color: var(--blue);
+      font-style: italic;
+    }
+
+    .final-card p {
+      margin: 28px auto 0;
+      max-width: 880px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 30px;
+      line-height: 1.45;
+    }
+
+    .underline {
+      width: 0;
+      height: 8px;
+      margin: 38px auto 0;
+      background: linear-gradient(90deg, var(--blue), var(--violet), var(--amber));
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(13, 17, 23, 0.92);
+      border: 1px solid rgba(0, 229, 255, 0.12);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    .controls button {
+      min-width: 92px;
+      height: 38px;
+      border: 1px solid rgba(0, 229, 255, 0.28);
+      background: #0b1220;
+      color: var(--blue);
+      font-family: var(--mono);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .controls input {
+      flex: 1;
+      accent-color: var(--blue);
+    }
+
+    .timecode {
+      min-width: 118px;
+      text-align: right;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 12px;
+      }
+
+      .controls {
+        flex-wrap: wrap;
+      }
+
+      .controls button {
+        flex: 1;
+      }
+
+      .timecode {
+        width: 100%;
+        text-align: left;
+      }
+    }
+
+    body.embed {
+      min-height: 100vh;
+      padding: 0;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    body.embed .preview-shell {
+      width: 100vw;
+      height: 100vh;
+      gap: 0;
+    }
+
+    body.embed .stage-wrap {
+      width: 100vw;
+      height: 100vh;
+      aspect-ratio: auto;
+      box-shadow: none;
+    }
+
+    body.embed .controls {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const isEmbed = new URLSearchParams(window.location.search).get("embed") === "1";
+    if (isEmbed) {
+      document.body.classList.add("embed");
+    }
+  </script>
+  <main class="preview-shell">
+    <div class="stage-wrap">
+      <div id="stage" data-composition-id="portfolio-reel" data-width="1920" data-height="1080" data-duration="20" data-start="0" data-track-index="0">
+        <div class="grid"></div>
+        <div class="scanline"></div>
+        <div class="node-field">
+          <span class="node n1"></span>
+          <span class="node n2"></span>
+          <span class="node n3"></span>
+          <span class="node n4"></span>
+          <span class="connector c1" style="left:252px;top:212px;width:1280px;"></span>
+          <span class="connector c2" style="left:420px;bottom:258px;width:1120px;"></span>
+        </div>
+
+        <section class="scene" id="scene-1">
+          <div class="scene-content">
+            <div class="kicker">Data & Insights Lead - Oxford</div>
+            <h1 class="hero-name">Alex <em>Mudge</em></h1>
+            <p class="hero-line">Reliable data pipelines, star schemas, Power BI models, and reporting layers built for teams that need clearer decisions.</p>
+            <div class="meta-row">
+              <span class="meta-chip">notmudge</span>
+              <span class="meta-chip">Oxford, UK</span>
+              <span class="meta-chip">notmudge.github.io</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene" id="scene-2">
+          <div class="scene-content">
+            <div class="kicker">Raw sources to trusted reporting</div>
+            <h2 class="scene-title">Clear architecture for <em>faster decisions.</em></h2>
+            <div class="pillar-grid">
+              <article class="pillar">
+                <div class="pillar-label">01 / ingest</div>
+                <h3>Pipelines</h3>
+                <p>Python ETL and ELT patterns that move data reliably from source to storage.</p>
+              </article>
+              <article class="pillar">
+                <div class="pillar-label">02 / model</div>
+                <h3>Star schemas</h3>
+                <p>Fact and dimension design with SQL transformations, tests, and documented marts.</p>
+              </article>
+              <article class="pillar">
+                <div class="pillar-label">03 / decide</div>
+                <h3>Reporting</h3>
+                <p>Power BI, DAX, and reporting layers shaped around how teams actually decide.</p>
+              </article>
+            </div>
+            <div class="flow-strip">
+              <div class="flow-line"></div>
+              <span class="flow-point"></span>
+              <span class="flow-point"></span>
+              <span class="flow-point"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene" id="scene-3">
+          <div class="scene-content project-focus">
+            <div class="dark-panel">
+              <div class="project-badge">Azure - Featured Project</div>
+              <h2 class="project-heading">Weather Data Pipeline</h2>
+              <p class="project-text">Open-Meteo observations land in ADLS Gen2, load into Azure SQL, and become tested daily and monthly marts.</p>
+              <div class="tag-row" style="margin-top:34px;">
+                <span class="skill-chip blue">Python</span>
+                <span class="skill-chip violet">Azure SQL</span>
+                <span class="skill-chip amber">dbt</span>
+              </div>
+            </div>
+            <div class="pipeline">
+              <div class="pipe-row">
+                <div class="pipe-card blue"><strong>Extract</strong><span>Hourly weather JSON from five UK cities.</span></div>
+                <div class="pipe-card violet"><strong>Load</strong><span>Idempotent rows merged into Azure SQL.</span></div>
+                <div class="pipe-card amber"><strong>Transform</strong><span>Tests, docs, daily marts, and monthly marts.</span></div>
+              </div>
+              <div class="pipe-row">
+                <div class="pipe-card"><strong>Flags</strong><span>Rain, frost, and snow day fields for analysis.</span></div>
+                <div class="pipe-card"><strong>Schedule</strong><span>GitHub Actions keeps the pipeline repeatable.</span></div>
+                <div class="pipe-card"><strong>Outputs</strong><span>Analytics-ready records for reporting layers.</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene" id="scene-4">
+          <div class="scene-content">
+            <div class="kicker">Featured and selected work</div>
+            <h2 class="scene-title">Project evidence, not just a tool list.</h2>
+            <div class="work-grid">
+              <article class="work-card">
+                <div>
+                  <h3>Sales Data Pipeline</h3>
+                  <p>Python ETL project generating retail sales data and a repeatable SQLite star schema.</p>
+                </div>
+                <span class="proof">Python - pandas - ETL</span>
+              </article>
+              <article class="work-card">
+                <div>
+                  <h3>Retail Data Warehouse</h3>
+                  <p>DDL, seed data, SCD Type 2 customers, fiscal calendar, and analytical SQL.</p>
+                </div>
+                <span class="proof">SQL - SCD Type 2</span>
+              </article>
+              <article class="work-card">
+                <div>
+                  <h3>Spotify Data Warehouse</h3>
+                  <p>Power BI modelling solution with clean facts, dimensions, and DAX-ready structure.</p>
+                </div>
+                <span class="proof">Power BI - DAX</span>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="scene" id="scene-5">
+          <div class="scene-content">
+            <div class="final-card">
+              <h2>Let's talk <em>data.</em></h2>
+              <p>notmudge.github.io - pipelines, data models, and reporting layers built for clearer decisions.</p>
+              <div class="underline"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="controls" aria-label="Preview controls">
+      <button id="play">Pause</button>
+      <button id="restart">Restart</button>
+      <input id="scrub" type="range" min="0" max="20" value="0" step="0.01" aria-label="Scrub timeline">
+      <div class="timecode"><span id="time">0.00</span>s / 20s</div>
+    </div>
+  </main>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+
+    const stage = document.getElementById("stage");
+    const scrub = document.getElementById("scrub");
+    const time = document.getElementById("time");
+    const play = document.getElementById("play");
+    const restart = document.getElementById("restart");
+    const duration = 20;
+
+    function fitStage() {
+      const wrap = document.querySelector(".stage-wrap");
+      const scale = wrap.clientWidth / 1920;
+      stage.style.transform = `scale(${scale})`;
+      stage.style.width = "1920px";
+      stage.style.height = "1080px";
+    }
+
+    window.addEventListener("resize", fitStage);
+    fitStage();
+
+    gsap.set(".scene", { opacity: 0 });
+    gsap.set("#scene-1", { opacity: 1 });
+    gsap.set(".connector", { scaleX: 0 });
+    gsap.set(".scanline", { x: -20 });
+
+    const tl = gsap.timeline({
+      paused: true,
+      repeat: isEmbed ? -1 : 0,
+      onUpdate: () => {
+        const current = tl.time();
+        scrub.value = current.toFixed(2);
+        time.textContent = current.toFixed(2);
+      },
+      onComplete: () => {
+        play.textContent = "Replay";
+      }
+    });
+
+    tl.to(".scanline", { x: 1920, duration, ease: "none" }, 0);
+    tl.from("#scene-1 .kicker", { y: 28, opacity: 0, duration: 0.48, ease: "power3.out" }, 0);
+    tl.from("#scene-1 .hero-name", { y: 42, opacity: 0, duration: 0.72, ease: "expo.out" }, 0.08);
+    tl.from("#scene-1 .hero-line", { y: 28, opacity: 0, duration: 0.56, ease: "power2.out" }, 0.26);
+    tl.from("#scene-1 .meta-chip", { y: 22, opacity: 0, stagger: 0.08, duration: 0.4, ease: "back.out(1.5)" }, 0.56);
+    tl.from(".node", { scale: 0, opacity: 0, stagger: 0.08, duration: 0.42, ease: "back.out(2)" }, 0.06);
+    tl.to(".connector", { scaleX: 1, stagger: 0.08, duration: 0.72, ease: "power2.out" }, 0.9);
+
+    tl.to("#scene-1", { opacity: 0, duration: 0.45, ease: "power2.inOut" }, 3.7);
+    tl.to("#scene-2", { opacity: 1, duration: 0.45, ease: "power2.inOut" }, 3.9);
+    tl.from("#scene-2 .kicker", { x: -44, opacity: 0, duration: 0.55, ease: "power3.out" }, 4.1);
+    tl.from("#scene-2 .scene-title", { y: 46, opacity: 0, duration: 0.7, ease: "expo.out" }, 4.25);
+    tl.from("#scene-2 .pillar", { y: 70, opacity: 0, stagger: 0.12, duration: 0.72, ease: "power4.out" }, 4.85);
+    tl.from(".flow-strip", { y: 28, opacity: 0, duration: 0.45, ease: "power2.out" }, 5.75);
+    tl.from(".flow-line", { scaleX: 0, duration: 0.95, ease: "power2.inOut" }, 6.0);
+    tl.from(".flow-point", { scale: 0, opacity: 0, stagger: 0.16, duration: 0.42, ease: "back.out(1.8)" }, 6.18);
+
+    tl.to("#scene-2", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 7.75);
+    tl.to("#scene-3", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 7.95);
+    tl.from("#scene-3 .dark-panel", { x: -80, opacity: 0, duration: 0.7, ease: "expo.out" }, 8.2);
+    tl.from("#scene-3 .project-badge", { y: 25, opacity: 0, duration: 0.45, ease: "power2.out" }, 8.45);
+    tl.from("#scene-3 .project-heading", { y: 44, opacity: 0, duration: 0.68, ease: "power4.out" }, 8.62);
+    tl.from("#scene-3 .project-text", { y: 24, opacity: 0, duration: 0.48, ease: "power2.out" }, 9.0);
+    tl.from("#scene-3 .skill-chip", { scale: 0.88, opacity: 0, stagger: 0.08, duration: 0.38, ease: "back.out(1.6)" }, 9.28);
+    tl.from("#scene-3 .pipe-card", { y: 60, opacity: 0, stagger: 0.1, duration: 0.58, ease: "power3.out" }, 8.82);
+
+    tl.to("#scene-3", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 12.65);
+    tl.to("#scene-4", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 12.85);
+    tl.from("#scene-4 .kicker", { y: 30, opacity: 0, duration: 0.48, ease: "power2.out" }, 13.05);
+    tl.from("#scene-4 .scene-title", { y: 48, opacity: 0, duration: 0.65, ease: "expo.out" }, 13.18);
+    tl.from("#scene-4 .work-card", { y: 78, rotation: 1.5, opacity: 0, stagger: 0.14, duration: 0.68, ease: "power3.out" }, 13.75);
+    tl.from("#scene-4 .proof", { x: -28, opacity: 0, stagger: 0.11, duration: 0.36, ease: "power2.out" }, 14.55);
+
+    tl.to("#scene-4", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 16.72);
+    tl.to("#scene-5", { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 16.92);
+    tl.from("#scene-5 .final-card", { y: 70, scale: 0.96, opacity: 0, duration: 0.72, ease: "expo.out" }, 17.15);
+    tl.from("#scene-5 h2", { y: 38, opacity: 0, duration: 0.6, ease: "power4.out" }, 17.38);
+    tl.from("#scene-5 p", { y: 24, opacity: 0, duration: 0.5, ease: "power2.out" }, 17.76);
+    tl.to(".underline", { width: 720, duration: 0.72, ease: "power2.inOut" }, 18.2);
+    tl.to("#scene-5 .final-card", { opacity: 0, scale: 0.98, duration: 0.45, ease: "power2.in" }, 19.55);
+
+    window.__timelines["portfolio-reel"] = tl;
+
+    tl.play();
+
+    play.addEventListener("click", () => {
+      if (tl.paused()) {
+        tl.play();
+        play.textContent = "Pause";
+      } else {
+        tl.pause();
+        play.textContent = "Play";
+      }
+    });
+
+    restart.addEventListener("click", () => {
+      tl.restart();
+      play.textContent = "Pause";
+    });
+
+    scrub.addEventListener("input", () => {
+      tl.pause(Number(scrub.value));
+      play.textContent = "Play";
+      time.textContent = Number(scrub.value).toFixed(2);
+    });
+  </script>
+</body>
+</html>
