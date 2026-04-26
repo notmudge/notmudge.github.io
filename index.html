@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alex Mudge — Data &amp; Insights Lead</title>
+  <meta name="description" content="Portfolio of Alex Mudge, an Oxford-based Data & Insights Lead building practical data pipelines, star schemas, Power BI models, and analytics-ready reporting layers.">
+  <link rel="canonical" href="https://notmudge.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notmudge.github.io/">
+  <meta property="og:title" content="Alex Mudge — Data & Insights Lead">
+  <meta property="og:description" content="Data portfolio covering production-style pipelines, SQL modelling, dbt, Azure, Power BI, and analytics engineering work.">
+  <meta property="og:image" content="https://notmudge.github.io/assets/images/me.jpeg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Alex Mudge — Data & Insights Lead">
+  <meta name="twitter:description" content="Oxford-based data portfolio focused on pipelines, data modelling, and reporting layers.">
+  <meta name="twitter:image" content="https://notmudge.github.io/assets/images/me.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -46,8 +57,8 @@
       --violet-l:     #a78bfa;
       --amber:        #f59e0b;
       --text:         #e2e8f0;
-      --text-dim:     #64748b;
-      --text-muted:   #2d3748;
+      --text-dim:     #94a3b8;
+      --text-muted:   #64748b;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -451,6 +462,22 @@
 
     /* ─── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 820px) {
+      nav {
+        padding: 0.75rem 1rem;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .nav-logo { font-size: 0.78rem; }
+      .theme-toggle { padding: 0.4rem 0.65rem; }
+      .nav-links {
+        order: 3;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+      .nav-links a { font-size: 0.65rem; }
+      .hero { padding-top: 8rem; }
       #about-inner { grid-template-columns: 1fr; gap: 3rem; }
       .avatar-frame { width: 200px; height: 200px; }
       .proj-inner { grid-template-columns: 1fr; }
@@ -458,8 +485,18 @@
       .journey { grid-template-columns: 1fr; }
       .j-step { border-right: none; border-bottom: 1px solid var(--border); }
       .j-step::after { content: '↓'; right: 50%; bottom: -0.8rem; top: unset; transform: translateX(50%); }
-      .nav-links { display: none; }
       .section-wrap { padding: 5rem 1.5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      #hero-canvas { display: none; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -593,14 +630,13 @@
           <div class="proj-badge"><i class="fa-solid fa-bolt"></i> Azure · Featured Project</div>
           <h3 class="proj-title">Weather Data Pipeline</h3>
           <p class="proj-desc">
-            Production-style <strong>end-to-end weather pipeline</strong> that ingests hourly observations for five UK
-            cities from Open-Meteo, lands raw JSON in <strong>ADLS Gen2 (Bronze)</strong>, and loads curated records into
-            Azure SQL. Data then flows through dbt models (staging &rarr; silver &rarr; gold) for analytics-ready marts.
+            End-to-end weather pipeline that ingests hourly observations for five UK cities from Open-Meteo, lands
+            raw JSON in <strong>ADLS Gen2</strong>, and loads curated records into Azure SQL. dbt then turns staging data
+            into tested daily and monthly marts.
           </p>
           <p class="proj-desc" style="margin-top:-0.5rem;">
-            Gold outputs include daily and monthly climate marts with derived indicators like
-            <strong>rain/frost/snow day flags</strong>. The pipeline is automated with GitHub Actions for daily ingestion,
-            SQL loading, and dbt transformations.
+            The project shows the full path from raw API data to analytics-ready outputs: idempotent loads,
+            <strong>rain/frost/snow day flags</strong>, scheduled GitHub Actions, and dbt tests.
           </p>
           <div class="proj-stack">
             <span class="s-tag">Python</span>
@@ -647,11 +683,11 @@
             <rect x="8" y="18" width="112" height="110" rx="4" fill="#0b1220" stroke="#00e5ff" stroke-width="1"/>
             <text x="64" y="36" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#00e5ff" font-weight="700" letter-spacing="2">EXTRACT</text>
             <line x1="12" y1="42" x2="116" y2="42" stroke="#00e5ff" stroke-width="0.5" opacity="0.3"/>
-            <text x="64" y="58"  text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#64748b">london.json</text>
-            <text x="64" y="72"  text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#64748b">manchester.json</text>
-            <text x="64" y="86"  text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#64748b">edinburgh.json</text>
+            <text x="64" y="58"  text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#94a3b8">london.json</text>
+            <text x="64" y="72"  text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#94a3b8">manchester.json</text>
+            <text x="64" y="86"  text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#94a3b8">edinburgh.json</text>
             <rect x="18" y="96" width="92" height="20" rx="2" fill="rgba(0,229,255,0.06)" stroke="rgba(0,229,255,0.2)" stroke-width="0.8"/>
-            <text x="64" y="110" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#475569">date-partitioned raw files</text>
+            <text x="64" y="110" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#94a3b8">date-partitioned raw files</text>
 
             <!-- Extract → Load arrow -->
             <line class="schema-edge" x1="120" y1="73" x2="158" y2="73" stroke="#334155" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arr)"/>
@@ -661,11 +697,11 @@
             <text x="216" y="36" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#a78bfa" font-weight="700" letter-spacing="2">LOAD</text>
             <line x1="164" y1="42" x2="268" y2="42" stroke="#a78bfa" stroke-width="0.5" opacity="0.3"/>
             <text x="216" y="56" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#a78bfa">Azure SQL</text>
-            <text x="216" y="70" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#64748b">bronze_weather_raw</text>
+            <text x="216" y="70" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#94a3b8">bronze_weather_raw</text>
             <rect x="170" y="78" width="92" height="14" rx="2" fill="rgba(167,139,250,0.07)" stroke="rgba(167,139,250,0.25)" stroke-width="0.8"/>
-            <text x="216" y="89" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#475569">MERGE on city/date/hour</text>
+            <text x="216" y="89" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#94a3b8">MERGE on city/date/hour</text>
             <rect x="170" y="96" width="92" height="14" rx="2" fill="rgba(167,139,250,0.07)" stroke="rgba(167,139,250,0.25)" stroke-width="0.8"/>
-            <text x="216" y="107" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#475569">idempotent daily loads</text>
+            <text x="216" y="107" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#94a3b8">idempotent daily loads</text>
 
             <!-- Load → Transform arrow -->
             <line class="schema-edge" x1="272" y1="73" x2="310" y2="73" stroke="#334155" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arr)"/>
@@ -674,27 +710,27 @@
             <rect x="312" y="18" width="82" height="110" rx="4" fill="#0b1220" stroke="#f59e0b" stroke-width="1"/>
             <text x="353" y="36" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#f59e0b" font-weight="700" letter-spacing="1.5">TRANSFORM</text>
             <line x1="316" y1="42" x2="390" y2="42" stroke="#f59e0b" stroke-width="0.5" opacity="0.3"/>
-            <text x="353" y="56" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#64748b">stg_weather_hourly</text>
-            <text x="353" y="68" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#64748b">silver models</text>
+            <text x="353" y="56" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#94a3b8">stg_weather_hourly</text>
+            <text x="353" y="68" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#94a3b8">silver models</text>
             <text x="353" y="80" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#f59e0b">gold marts</text>
-            <text x="353" y="93" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#475569">dbt run + test</text>
-            <text x="353" y="105" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#475569">scheduled via GitHub Actions</text>
+            <text x="353" y="93" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#94a3b8">dbt run + test</text>
+            <text x="353" y="105" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#94a3b8">scheduled via GitHub Actions</text>
 
             <!-- ── MARTS row ── -->
-            <text x="200" y="152" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#475569" letter-spacing="1">GOLD MART OUTPUTS</text>
+            <text x="200" y="152" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#94a3b8" letter-spacing="1">GOLD MART OUTPUTS</text>
 
             <!-- mart boxes -->
             <rect x="8"   y="160" width="118" height="44" rx="3" fill="#0b1220" stroke="#00e5ff" stroke-width="0.8" opacity="0.85"/>
             <text x="67"  y="175" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#00e5ff">mart_weather_daily</text>
-            <text x="67"  y="188" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#475569">temp · precip · wind · flags</text>
+            <text x="67"  y="188" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#94a3b8">temp · precip · wind · flags</text>
 
             <rect x="141" y="160" width="118" height="44" rx="3" fill="#0b1220" stroke="#a78bfa" stroke-width="0.8" opacity="0.85"/>
             <text x="200" y="175" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#a78bfa">mart_weather_monthly</text>
-            <text x="200" y="188" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#475569">rollups · climate averages</text>
+            <text x="200" y="188" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#94a3b8">rollups · climate averages</text>
 
             <rect x="274" y="160" width="118" height="44" rx="3" fill="#0b1220" stroke="#f59e0b" stroke-width="0.8" opacity="0.85"/>
             <text x="333" y="175" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#f59e0b">dbt tests + docs</text>
-            <text x="333" y="188" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#475569">quality checks · lineage</text>
+            <text x="333" y="188" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#94a3b8">quality checks · lineage</text>
 
             <!-- arrows down to notebooks -->
             <line x1="67"  y1="204" x2="67"  y2="228" stroke="#334155" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#arr)"/>
@@ -704,18 +740,18 @@
             <!-- ── NOTEBOOKS row ── -->
             <rect x="8"   y="230" width="118" height="44" rx="3" fill="#0b1220" stroke="#475569" stroke-width="0.8"/>
             <text x="67"  y="247" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#94a3b8">⚙ ingest_weather.py</text>
-            <text x="67"  y="261" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#475569">Open-Meteo to ADLS Bronze</text>
+            <text x="67"  y="261" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#94a3b8">Open-Meteo to ADLS Bronze</text>
 
             <rect x="141" y="230" width="118" height="44" rx="3" fill="#0b1220" stroke="#475569" stroke-width="0.8"/>
             <text x="200" y="247" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#94a3b8">⚙ load_bronze_to_sql.py</text>
-            <text x="200" y="261" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#475569">merge rows into Azure SQL</text>
+            <text x="200" y="261" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#94a3b8">merge rows into Azure SQL</text>
 
             <rect x="274" y="230" width="118" height="44" rx="3" fill="#0b1220" stroke="#475569" stroke-width="0.8"/>
             <text x="333" y="247" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#94a3b8">⚙ dbt run + test</text>
-            <text x="333" y="261" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#475569">silver + gold transformations</text>
+            <text x="333" y="261" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#94a3b8">silver + gold transformations</text>
 
             <!-- bottom label -->
-            <text x="200" y="300" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#2d3748">Python · Azure SQL · dbt · ADLS Gen2 · GitHub Actions</text>
+            <text x="200" y="300" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6.5" fill="#64748b">Python · Azure SQL · dbt · ADLS Gen2 · GitHub Actions</text>
           </svg>
         </div>
       </div>
@@ -731,7 +767,7 @@
           <span class="proj-small-icon">🐍</span>
           <h4 class="proj-small-title">Sales Data Pipeline</h4>
         </div>
-        <p class="proj-small-desc">Python ETL pipeline — generates synthetic retail sales data, runs extract → transform → load, and outputs a full Star Schema into SQLite. Clean separation of concerns, structured logging, surrogate keys.</p>
+        <p class="proj-small-desc">Python ETL pipeline that generates retail sales data, builds a SQLite Star Schema, and logs each extract, transform, and load step for repeatable local runs.</p>
         <div class="proj-small-stack">
           <span class="s-tag">Python</span>
           <span class="s-tag">pandas</span>
@@ -749,7 +785,7 @@
           <span class="proj-small-icon">🗄️</span>
           <h4 class="proj-small-title">Retail Data Warehouse</h4>
         </div>
-        <p class="proj-small-desc">Complete SQL data warehouse schema for e-commerce analytics — DDL, seed data, SCD Type 2 customers, UK fiscal calendar, and 7 analytical queries including window functions and QoQ growth.</p>
+        <p class="proj-small-desc">SQL warehouse reference project with DDL, seed data, SCD Type 2 customers, a UK fiscal calendar, and analytical queries using windows and QoQ growth.</p>
         <div class="proj-small-stack">
           <span class="s-tag">SQL</span>
           <span class="s-tag">SQLite</span>
@@ -766,7 +802,7 @@
           <span class="proj-small-icon">🎵</span>
           <h4 class="proj-small-title">Spotify Data Warehouse</h4>
         </div>
-        <p class="proj-small-desc">Transformed raw Spotify data into a production Star Schema for Power BI — Fact_streams + 3 dimension tables, mixed-format date fix via DAX Date Table, numeric keys replacing heavy text columns.</p>
+        <p class="proj-small-desc">Power BI modelling solution that turns raw Spotify tables into a clean Fact_streams model with dimensions, date fixes, and lighter numeric relationship keys.</p>
         <div class="proj-small-stack">
           <span class="s-tag">Power BI</span>
           <span class="s-tag">DAX</span>
@@ -791,8 +827,8 @@
     <div class="section-label" style="justify-content:center;">04 &mdash; Contact</div>
     <h2 class="section-title" style="text-align:center;">Let's talk<br><em>data.</em></h2>
     <p class="contact-body">
-      If you need an accurate, maintainable, production-ready data model, pipeline, or reporting layer,
-      I'd love to help. Based in Oxford, available for freelance and contract engagements.
+      If you need a maintainable data model, pipeline, or reporting layer, I'd love to talk. Based in Oxford,
+      available for data, analytics, and BI roles or project work.
     </p>
     <div class="contact-links">
       <a href="mailto:alex@mudge.io" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> alex@mudge.io</a>
@@ -839,6 +875,8 @@
   /* ── HERO CANVAS: drifting star-schema network ── */
   (function () {
     const canvas = document.getElementById('hero-canvas');
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!canvas || reduceMotion) return;
     const ctx    = canvas.getContext('2d');
     let W, H, nodes, t = 0;
 
@@ -908,9 +946,11 @@
 
   /* ── ROTATING HERO LABEL ── */
   (function () {
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const labels = ['Data & Insights Lead', 'Data Engineering Lead', 'Analytics Engineering Lead', 'Data Modeller', 'Insights Lead'];
     let idx = 0;
     const el = document.getElementById('rotating-label');
+    if (!el || reduceMotion) return;
     setInterval(() => {
       el.style.opacity = '0';
       setTimeout(() => {
@@ -923,6 +963,8 @@
 
   /* ── SCROLL REVEAL ── */
   (function () {
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return;
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
