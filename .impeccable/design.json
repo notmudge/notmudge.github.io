@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-15T00:00:00Z",
+  "title": "Design System: Alex Mudge — Data & Insights Lead",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "primary", "displayName": "Ink", "canonical": "#1c2530", "tonalRamp": ["#1c2530", "#2c3847", "#4b5a6b", "#576573", "#7c8a99", "#a9b4bd", "#d7dee5", "#f4f6f8"] },
+      "ink-light": { "role": "primary", "displayName": "Ink (dark mode)", "canonical": "#dfe6ec", "tonalRamp": ["#0c0f13", "#14181d", "#1b2129", "#66727d", "#8b96a2", "#97a3af", "#c3ccd3", "#dfe6ec"] },
+      "stamp": { "role": "secondary", "displayName": "Stamp Red", "canonical": "#a3242f", "tonalRamp": ["#3a0d11", "#5c151a", "#7c1a22", "#a3242f", "#c23643", "#d95c67", "#ec8b92", "#f7c5c9"] },
+      "stamp-dark": { "role": "secondary", "displayName": "Stamp Red (dark mode)", "canonical": "#e2555f", "tonalRamp": ["#3a0d11", "#5c151a", "#7c1a22", "#a3242f", "#c23643", "#e2555f", "#ff8189", "#ffc4c8"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#e9edf1", "tonalRamp": ["#14181d", "#1c2530", "#4b5a6b", "#576573", "#7c8a99", "#d7dee5", "#e9edf1", "#f4f6f8"] },
+      "paper-dark": { "role": "neutral", "displayName": "Paper (dark mode)", "canonical": "#14181d", "tonalRamp": ["#0c0f13", "#14181d", "#1b2129", "#66727d", "#8b96a2", "#97a3af", "#c3ccd3", "#dfe6ec"] },
+      "rule": { "role": "neutral", "displayName": "Rule Line", "canonical": "rgba(28, 37, 48, 0.20)", "tonalRamp": ["rgba(28,37,48,0.10)", "rgba(28,37,48,0.20)", "rgba(28,37,48,0.30)", "rgba(28,37,48,0.40)"] }
+    },
+    "typographyMeta": {
+      "name": { "displayName": "Name", "purpose": "The NAME field value — the one outsized element on the page, sized as the biggest grid field, not a hero headline." },
+      "heading": { "displayName": "Section Heading", "purpose": "SUMMARY / CAPABILITIES / ATTACHED EXHIBITS / AUTHORIZED CONTACT — no decorative numbering prefix." },
+      "body": { "displayName": "Body", "purpose": "The summary paragraph; the only long-form prose on the page." },
+      "field": { "displayName": "Field Value", "purpose": "Every filled-in data point: ref no., role, location, dates, tags, reference codes." },
+      "label": { "displayName": "Field Label", "purpose": "The small caption above every field value." }
+    },
+    "shadows": [
+      { "name": "stacked-sheet", "value": "3px 4px 10px rgba(28,37,48,0.16)", "purpose": "Applied once to the record's ::before pseudo-element, simulating a real sheet beneath it. The system's only shadow." }
+    ],
+    "motion": [
+      { "name": "stamp-press", "value": "0.5s cubic-bezier(0.16, 1, 0.3, 1), scale 1.5→0.97→1 + rotate -9deg→-1deg→-3deg", "purpose": "The status stamp's one-time press-in on load — the system's single authored motion moment." },
+      { "name": "section-reveal", "value": "opacity 0.5s ease, translateY(6px)→0", "purpose": "Quiet, supporting scroll reveal for each record section; deliberately not the same device as the stamp press." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "760px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Status Stamp",
+      "kind": "custom",
+      "refersTo": "stamp-status",
+      "description": "Rubber-stamp status mark with a one-time press-in animation.",
+      "html": "<span class=\"ds-stamp\">Open to Work</span>",
+      "css": ".ds-stamp { display: inline-block; border: 2px solid #a3242f; color: #a3242f; font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 0.75rem; transform: rotate(-3deg); }"
+    },
+    {
+      "name": "Field Grid Item",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Label-above-value pairing used throughout the record header and fields.",
+      "html": "<div><span class=\"ds-field-label\">Role</span><span class=\"ds-field-value\">Data &amp; Insights Lead</span></div>",
+      "css": ".ds-field-label { display: block; font-family: 'Courier Prime', monospace; font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; color: #576573; margin-bottom: 0.3rem; } .ds-field-value { font-family: 'Courier Prime', monospace; font-size: 0.95rem; color: #1c2530; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Exhibit Card",
+      "kind": "card",
+      "refersTo": "exhibit-card",
+      "description": "Filed project card with a tab label, staple mark, and functional cross-reference footer.",
+      "html": "<div class=\"ds-exhibit\"><span class=\"ds-exhibit-tag\">Exhibit A</span><span class=\"ds-exhibit-staple\"></span><h3 class=\"ds-exhibit-title\">Weather Data Pipeline</h3><p class=\"ds-exhibit-desc\">End-to-end weather pipeline landing raw JSON in ADLS Gen2.</p><div class=\"ds-exhibit-refs\">Refs: <a href=\"#\">C1</a> · <a href=\"#\">A2</a></div></div>",
+      "css": ".ds-exhibit { position: relative; background: #f4f6f8; border: 1px solid rgba(28,37,48,0.20); padding: 1.5rem; transition: border-color 0.2s, transform 0.2s; } .ds-exhibit:hover { border-color: rgba(28,37,48,0.40); transform: translateY(-2px); } .ds-exhibit-tag { position: absolute; top: -0.6rem; left: 1.25rem; background: #e9edf1; border: 1px solid rgba(28,37,48,0.40); padding: 0.15rem 0.6rem; font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 0.66rem; letter-spacing: 0.08em; color: #576573; } .ds-exhibit-staple { position: absolute; top: -3px; right: 1.4rem; width: 22px; height: 8px; border: 2px solid #576573; border-bottom: none; border-radius: 3px 3px 0 0; opacity: 0.55; } .ds-exhibit-title { font-family: 'Source Serif 4', Georgia, serif; font-weight: 700; font-size: 1.2rem; color: #1c2530; margin-top: 0.4rem; } .ds-exhibit-desc { color: #4b5a6b; font-size: 0.85rem; line-height: 1.7; } .ds-exhibit-refs { font-family: 'Courier Prime', monospace; font-size: 0.68rem; color: #576573; padding-top: 0.5rem; border-top: 1px solid rgba(28,37,48,0.20); } .ds-exhibit-refs a { color: #576573; text-decoration: underline; } .ds-exhibit-refs a:hover { color: #a3242f; }"
+    },
+    {
+      "name": "Pending Exhibit",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Honest placeholder for reserved-but-not-yet-evidenced content (the AI/Copilot rollout case study).",
+      "html": "<div class=\"ds-exhibit ds-exhibit-pending\"><span class=\"ds-exhibit-tag\">Exhibit E</span><span class=\"ds-pending-stamp\">On File · Pending</span><p>Reserved for a documented case study once one is ready to attach.</p></div>",
+      "css": ".ds-exhibit-pending { background: repeating-linear-gradient(135deg, #f4f6f8, #f4f6f8 10px, rgba(28,37,48,0.20) 10px, rgba(28,37,48,0.20) 11px); text-align: center; min-height: 210px; } .ds-pending-stamp { display: inline-block; border: 2px solid #a3242f; color: #a3242f; font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; transform: rotate(-4deg); margin-bottom: 0.75rem; }"
+    },
+    {
+      "name": "Primary Button (Release)",
+      "kind": "button",
+      "refersTo": "release-btn-primary",
+      "description": "The one place stamp-red appears as a fill — the primary contact action.",
+      "html": "<a href=\"#\" class=\"ds-btn ds-btn-primary\">alex@mudge.io</a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.7rem 1.4rem; font-family: 'Courier Prime', monospace; font-size: 0.8rem; text-decoration: none; border: 1px solid rgba(28,37,48,0.40); color: #1c2530; transition: all 0.18s; } .ds-btn-primary { border-color: #a3242f; color: #a3242f; } .ds-btn-primary:hover { background: #a3242f; color: #e9edf1; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Personnel Record",
+    "overview": "The site is one professional record, not a portfolio grid. It reads like an institutional personnel/records-office document: a bordered record card holds identity and career facts in a real field grid, career history sits in a service-record table, capabilities read as a signed-off competency checklist, and project work is filed underneath as numbered, staple-marked exhibits — evidence attached to the record, not the record itself.\n\nThis is a deliberate replacement of an earlier dark, neon-cyan, terminal/hacker-console identity, made on the explicit direction to remove that look entirely. Depth comes from real stacked-paper offset, never colored glow or blur. Color is restrained to two neutral inks plus exactly one accent — a stamp-red reserved for status and proof — never ambient branding or category color-coding.",
+    "keyCharacteristics": [
+      "One record-card shell, not a multi-hero portfolio layout; project work is explicitly subordinate, filed as exhibits",
+      "Restrained palette: two neutral inks + one stamp-red accent used only for status/proof, never ambient",
+      "Serif for the record's own prose, monospace exclusively for typed/filled data fields",
+      "Depth from real stacked-paper offset and hairline rules; no glow, no blur-as-decoration, no gradients",
+      "Cross-reference codes (exhibit ↔ capability) are functional, not decorative section numbering"
+    ],
+    "rules": [
+      { "name": "The One-Accent Rule", "body": "Stamp-red is spent only on status and proof — never on ambient decoration, never split across categories.", "section": "colors" },
+      { "name": "The No-Glow Rule", "body": "Depth comes from stacked-paper offset shadows and rule-line opacity, never colored glow, backdrop blur, or gradients.", "section": "elevation" },
+      { "name": "The Typed-vs-Set Rule", "body": "Text the document 'printed' is Source Serif 4; text that reads as 'filled in' is Courier Prime. Mixing the two within a role is a defect.", "section": "typography" },
+      { "name": "The Stacked-Paper Rule", "body": "Depth is a physical fact — real paper sheets under the top one — not a floating-card effect. One shadow instance in the whole system.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Courier Prime exclusively for typed/filled data and Source Serif 4 exclusively for the record's own prose.",
+      "Do spend stamp-red only on status, proof, and the one primary action.",
+      "Do build depth from real stacked-paper offset and rule-line opacity, never glow or gradient.",
+      "Do mark unfilled/future content honestly with a labeled 'pending' exhibit rather than fabricating it.",
+      "Do keep cross-reference codes functional (real anchor links), not decorative section numbering."
+    ],
+    "donts": [
+      "Don't reintroduce the previous dark/neon-cyan/terminal-console identity, gradients, glow, or particle-canvas motion.",
+      "Don't add rounded corners; every shape is a hard rectangle except the deliberately rotated stamps.",
+      "Don't color-code categories with multiple accent hues.",
+      "Don't use a Unicode glyph or emoji as an icon.",
+      "Don't add a decorative section-number sequence that carries no cross-referencable information."
+    ]
+  }
+}

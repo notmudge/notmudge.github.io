@@ -1,0 +1,6 @@
+{
+  "files": ["index.html", "portfolio.html", "hyperframes-portfolio-reel/index.html"],
+  "insertBefore": "</body>",
+  "commentSyntax": "html",
+  "cspChecked": true
+}
